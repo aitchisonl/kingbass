@@ -58,6 +58,7 @@ public class Robot extends IterativeRobot {
 		OI.buttonB.whileHeld(new CloseClaw());
 		OI.select.whenPressed(new ShiftDown());
 		OI.start.whenPressed(new ShiftUp());
+
 		
 	}
 
