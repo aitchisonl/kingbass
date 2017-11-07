@@ -25,6 +25,9 @@ public class RobotMap {
 	public static final int ARM_2 = 12;
 	public static final int LEFT_SOLENOID = 13;
 	public static final int RIGHT_SOLENOID = 14;
+	public static final double CAMERA_CENTER_X = 320.0;
+	public static final double CAMERA_CENTER_Y = 240.0;
+	public static final double RETURN_THRESHOLD = 500.0;
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;

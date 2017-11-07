@@ -1,5 +1,6 @@
 package org.team1540.kingbass2.commands;
 
+import edu.wpi.first.wpilibj.command.TimedCommand;
 import org.team1540.kingbass2.Robot;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
@@ -7,16 +8,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class CloseClaw extends InstantCommand {
+public class CloseClaw extends TimedCommand {
 
-    public CloseClaw() {
-        super();
+    public CloseClaw(double timeout) {
+        super(timeout);
         requires(Robot.claw);
     }
 
-    // Called once when the command executes
-    protected void initialize() {
-    		Robot.claw.close();
+
+    protected void execute() {
+        Robot.claw.close();
     }
 
 }

@@ -1,12 +1,8 @@
 
 package org.team1540.kingbass2;
 
-import org.team1540.kingbass2.commands.CloseClaw;
-import org.team1540.kingbass2.commands.OpenCloseGrabber;
-import org.team1540.kingbass2.commands.ShiftDown;
-import org.team1540.kingbass2.commands.ShiftUp;
-import org.team1540.kingbass2.commands.ExampleCommand;
-import org.team1540.kingbass2.commands.OpenClaw;
+import org.team1540.kingbass2.commands.*;
+import org.team1540.kingbass2.commands.autonomous.DoNothing;
 import org.team1540.kingbass2.subsystems.Arm;
 import org.team1540.kingbass2.subsystems.Claw;
 import org.team1540.kingbass2.subsystems.DriveTrain;
@@ -43,6 +39,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -50,16 +47,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		chooser.addDefault("Default Auto", new ExampleCommand());
+		chooser.addDefault("Do Nothing", new DoNothing());
+		chooser.addObject("Drive to bucket", new DriveToObject());
+		chooser.addObject("Pick up bucket", new GrabBucket());
+		SmartDashboard.putData("Autonomous Mode Chooser", chooser);
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", chooser);
+
 		OI.rightBumper.whenPressed(new OpenCloseGrabber());
-		OI.buttonA.whileHeld(new OpenClaw());
-		OI.buttonB.whileHeld(new CloseClaw());
 		OI.select.whenPressed(new ShiftDown());
 		OI.start.whenPressed(new ShiftUp());
+		OI.leftBumper.whenPressed(new GrabBucket());
+		OI.buttonA.whileHeld(new DriveToObject());
+		OI.leftBumper.whenPressed(new EmptyBucket());
 
-		
+
+
 	}
 
 	/**
