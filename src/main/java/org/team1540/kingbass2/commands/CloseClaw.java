@@ -1,23 +1,15 @@
 package org.team1540.kingbass2.commands;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.team1540.kingbass2.Robot;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-
-/**
- *
- */
-public class CloseClaw extends TimedCommand {
-
-    public CloseClaw(double timeout) {
-        super(timeout);
+public class CloseClaw extends InstantCommand {
+    public CloseClaw() {
         requires(Robot.claw);
     }
 
-
-    protected void execute() {
+    @Override
+    protected void initialize() {
         Robot.claw.close();
     }
-
 }

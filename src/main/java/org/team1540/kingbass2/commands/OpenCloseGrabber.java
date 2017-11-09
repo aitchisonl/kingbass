@@ -13,12 +13,16 @@ public class OpenCloseGrabber extends TimedCommand {
     public OpenCloseGrabber() {
         super(1);
         requires(Robot.grabber);
-        if (Robot.isGrabberOpen) {
-        		openingGrabber = false;
-        } else {
-        		openingGrabber = true;
-        }
         	
+    }
+
+    @Override
+    protected void initialize() {
+        if (Robot.isGrabberOpen) {
+            openingGrabber = false;
+        } else {
+            openingGrabber = true;
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run

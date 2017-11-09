@@ -13,7 +13,6 @@ import org.team1540.kingbass2.subsystems.Shifters;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,6 +34,8 @@ public class Robot extends IterativeRobot {
 	public static Grabber grabber = new Grabber();
 	public static Shifters shifters = new Shifters();
 	public static boolean isGrabberOpen = false;
+    Command openClaw;
+    Command stop;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -46,19 +47,23 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+        openClaw = new OpenClawForTime(1);
+        stop = new StopEverything();
 		oi = new OI();
 		chooser.addDefault("Do Nothing", new DoNothing());
 		chooser.addObject("Drive to bucket", new DriveToObject());
 		chooser.addObject("Pick up bucket", new GrabBucket());
 		SmartDashboard.putData("Autonomous Mode Chooser", chooser);
-		// chooser.addObject("My Auto", new MyAutoCommand());
 
-		OI.rightBumper.whenPressed(new OpenCloseGrabber());
-		OI.select.whenPressed(new ShiftDown());
-		OI.start.whenPressed(new ShiftUp());
-		OI.leftBumper.whenPressed(new GrabBucket());
-		OI.buttonA.whileHeld(new DriveToObject());
-		OI.leftBumper.whenPressed(new EmptyBucket());
+        OI.driverLeftStick.whileHeld(new DriveToObject());
+		OI.driverLeftBumper.whenPressed(new ShiftDown());
+		OI.driverRightBumper.whenPressed(new ShiftUp());
+
+        OI.coLeftStick.whenPressed(new OpenCloseGrabber());
+		OI.coLeftBumper.whenPressed(new EmptyBucket());
+		OI.coRightBumper.whenPressed(new GrabBucket());
+		OI.coButtonA.whileHeld(new OpenClaw());
+		OI.coButtonB.whileHeld(new CloseClaw());
 
 
 
@@ -71,7 +76,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+	    stop.start();
 	}
 
 	@Override
@@ -122,7 +127,10 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-	}
+		stop.start();
+        openClaw.start();
+
+    }
 
 	/**
 	 * This function is called periodically during operator control

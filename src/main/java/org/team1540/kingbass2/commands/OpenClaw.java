@@ -1,23 +1,15 @@
 package org.team1540.kingbass2.commands;
 
-import edu.wpi.first.wpilibj.command.TimedCommand;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import org.team1540.kingbass2.Robot;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-
-/**
- *
- */
-public class OpenClaw extends TimedCommand {
-
-    public OpenClaw(double timeout) {
-        super(timeout);
+public class OpenClaw extends InstantCommand {
+    public OpenClaw() {
         requires(Robot.claw);
     }
 
-    // Called once when the command executes
-    protected void execute() {
+    @Override
+    protected void initialize() {
         Robot.claw.open();
     }
-
 }

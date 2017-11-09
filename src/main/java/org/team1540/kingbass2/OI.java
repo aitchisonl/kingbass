@@ -15,16 +15,28 @@ public class OI {
     public static final int RIGHT_TRIGGER = 3;
     public static final int LEFT_TRIGGER = 2;
     public static final Joystick driver = new Joystick(0);
-    public static final JoystickButton buttonA = new JoystickButton(driver, 1);
-    public static final JoystickButton buttonB = new JoystickButton(driver, 2);
-    public static final JoystickButton buttonX = new JoystickButton(driver, 3);
-    public static final JoystickButton buttonY = new JoystickButton(driver, 4);
-    public static final JoystickButton leftBumper = new JoystickButton(driver, 5);
-    public static final JoystickButton rightBumper = new JoystickButton(driver, 6);
-    public static final JoystickButton select = new JoystickButton(driver, 7);
-    public static final JoystickButton start = new JoystickButton(driver, 8);
-    public static final JoystickButton leftStick = new JoystickButton(driver, 9);
-    public static final JoystickButton rightStick = new JoystickButton(driver, 10);
+    public static final Joystick copilot = new Joystick(1);
+    public static final JoystickButton driverButtonA = new JoystickButton(driver, 1);
+    public static final JoystickButton driverButtonB = new JoystickButton(driver, 2);
+    public static final JoystickButton driverButtonX = new JoystickButton(driver, 3);
+    public static final JoystickButton driverButtonY = new JoystickButton(driver, 4);
+    public static final JoystickButton driverLeftBumper = new JoystickButton(driver, 5);
+    public static final JoystickButton driverRightBumper = new JoystickButton(driver, 6);
+    public static final JoystickButton driverSelect = new JoystickButton(driver, 7);
+    public static final JoystickButton driverStart = new JoystickButton(driver, 8);
+    public static final JoystickButton driverLeftStick = new JoystickButton(driver, 9);
+    public static final JoystickButton driverRightStick = new JoystickButton(driver, 10);
+
+    public static final JoystickButton coButtonA = new JoystickButton(copilot, 1);
+    public static final JoystickButton coButtonB = new JoystickButton(copilot, 2);
+    public static final JoystickButton coButtonX = new JoystickButton(copilot, 3);
+    public static final JoystickButton coButtonY = new JoystickButton(copilot, 4);
+    public static final JoystickButton coLeftBumper = new JoystickButton(copilot, 5);
+    public static final JoystickButton coRightBumper = new JoystickButton(copilot, 6);
+    public static final JoystickButton coSelect = new JoystickButton(copilot, 7);
+    public static final JoystickButton coStart = new JoystickButton(copilot, 8);
+    public static final JoystickButton coLeftStick = new JoystickButton(copilot, 9);
+    public static final JoystickButton coRightStick = new JoystickButton(copilot,10);
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
