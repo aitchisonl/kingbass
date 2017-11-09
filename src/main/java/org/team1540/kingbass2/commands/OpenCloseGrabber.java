@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.TimedCommand;
  *
  */
 public class OpenCloseGrabber extends TimedCommand {
-	private boolean openingGrabber;
+    private boolean openingGrabber;
 
     public OpenCloseGrabber() {
         super(1);
         requires(Robot.grabber);
-        	
+
     }
 
     @Override
@@ -27,12 +27,12 @@ public class OpenCloseGrabber extends TimedCommand {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    		if (openingGrabber) {
-    			Robot.grabber.open();
-    			Robot.isGrabberOpen = true;
-    		} else {
-    			Robot.grabber.close();
-    			Robot.isGrabberOpen = false;
-    		}
+        if (openingGrabber) {
+            Robot.grabber.open();
+            Robot.isGrabberOpen = true;
+        } else {
+            Robot.grabber.close();
+            Robot.isGrabberOpen = false;
+        }
     }
 }

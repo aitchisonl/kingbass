@@ -1,4 +1,4 @@
-package org.team1540.kingbass2.commands;
+package org.team1540.kingbass2.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
@@ -7,12 +7,11 @@ import org.team1540.kingbass2.RobotMap;
 
 import java.util.Arrays;
 
-@SuppressWarnings("ALL")
-public class DriveToObject extends Command {
+public class AutoDriveToObject extends Command {
     NetworkTable table;
     int minDistI;
 
-    public DriveToObject() {
+    public AutoDriveToObject() {
         table = NetworkTable.getTable("GRIP/myBlobsReport");
         double centerX = RobotMap.CAMERA_CENTER_X;
         double centerY = RobotMap.CAMERA_CENTER_Y;
@@ -48,6 +47,13 @@ public class DriveToObject extends Command {
 
     @Override
     protected boolean isFinished() {
+        double[] sizeArray = table.getNumberArray("size", new double[0]);
+        if (sizeArray[minDistI] > RobotMap.RETURN_THRESHOLD) {
+            return true;
+        }
         return false;
+
     }
+
+
 }
