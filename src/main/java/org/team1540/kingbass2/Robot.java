@@ -101,6 +101,7 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
         autonomousCommand = chooser.getSelected();
+        new OpenClawForTime(1).start();
 
         if (autonomousCommand != null)
             autonomousCommand.start();
